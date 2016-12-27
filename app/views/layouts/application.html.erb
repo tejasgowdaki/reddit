@@ -8,7 +8,22 @@
 </head>
 <body>
 
-<%= yield %>
+	<% flash.each do |name, msg| %>
+		<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+	<% end %>
+
+	<% if user_signed_in? %>
+		<%= link_to "Submit Link", new_link_path %>
+		<%= link_to "Account Settings", edit_user_registration_path %> |
+		<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+	<% else %>
+		<%= link_to "Login", new_user_session_path %> |
+		<%= link_to "Register", new_user_registration_path %>
+	<% end %>
+
+	
+
+	<%= yield %>
 
 </body>
 </html>
