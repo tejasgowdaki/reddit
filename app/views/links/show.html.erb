@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h2><%= link_to @link.title, @link.url, target: "_blank" %></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @link.title %>
-</p>
+<%= link_to "Visit URL", @link.url, target: "_blank" %><br/>
 
-<p>
-  <strong>Url:</strong>
-  <%= @link.url %>
-</p>
+<%= link_to "Upvote #{@link.get_upvotes.size}", like_link_path(@link), method: :put %> | 
+<%= link_to "Downvote #{@link.get_downvotes.size}", dislike_link_path(@link), method: :put %><br/>
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %>
+<% if @link.user == current_user %>
+	<%= link_to 'Edit', edit_link_path(@link) %> | 
+	<%= link_to 'Back', links_path %>
+<% end %>
