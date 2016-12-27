@@ -4,7 +4,7 @@
   <% @links.each do |link| %>
     <li>
       <%= link_to link.title, link %><small>  <%= link_to "Visit", link.url, target: "_blank" %></small><br/>
-      Submitted <%= time_ago_in_words(link.created_at) %> ago by <%= link.user.email %><br/>
+      Submitted <%= time_ago_in_words(link.created_at) %> ago by <%= link.user.name %><br/>
       <%= link_to "Upvote #{link.get_upvotes.size}", like_link_path(link), method: :put %>
       <%= link_to "Downvote #{link.get_downvotes.size}", dislike_link_path(link), method: :put %>
     </li>
