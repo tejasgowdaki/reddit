@@ -9,3 +9,13 @@
 	<%= link_to 'Edit', edit_link_path(@link) %> | 
 	<%= link_to 'Back', links_path %>
 <% end %>
+
+
+<h3>Comments (<%= @link.comments.count %>)</h3>
+
+<%= render :partial => @link.comments %>
+
+<%= simple_form_for [@link, Comment.new] do |f| %>
+	<%= f.text_area :body %><br/>
+	<%= f.submit "Add Comment" %>
+<% end %>
